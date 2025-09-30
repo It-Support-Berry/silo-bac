@@ -91,7 +91,7 @@ Gestion des bacs (sacs) et leurs archives :
 ## 🔧 Installation & démarrage rapide
 1. **Cloner le projet**
 
-- git clone https://github.com/It-Support-Berry/backend-zeller-planner.git
+- git clone https://github.com/It-Support-Berry/silo-bac.git
 
 2. **installer les dépendances**
 
