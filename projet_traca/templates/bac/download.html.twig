@@ -1,0 +1,65 @@
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+         
+    
+    <h1 > Bacs en cours d'utilisation </h1>
+    
+        <table width="100%" border="1" cellspacing="1" cellpadding="1">
+            <thead>
+                <tr  id="tableau">
+                    <th>Bac</th>
+                    <th>Localisation</th>
+                    <th>Lot</th>
+                    <th>Matière</th>
+                    <th>Code JDE</th>
+                </tr>
+            </thead>
+        <tbody>
+
+            {% for bac in bacs %}
+                <tr>
+                    {% if bac.quantite2 < bac.quantite1 %}
+                        <td> {{bac.numerobac}}</td>
+                        <td> {{bac.localisation}}</td>
+                        <td> {{bac.lot1}}</td>
+                        <td> {{bac.matiere}}</td>
+                        <td> {{bac.codejde}}</td>
+                    {% else %}
+                        <td> {{bac.numerobac}}</td>
+                        <td> {{bac.localisation}}</td>
+                        <td> {{bac.lot2}}</td>
+                        <td> {{bac.matiere}}</td>
+                        <td> {{bac.codejde}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <!-- ___________________________________________________________ CSS ________________________________ -->
+
+    <style> 
+        th, td {
+            padding: 15px;
+            text-align: center;
+            color:#004c9d;
+            font-weight: bold;
+            border-color:#004c9d;
+        }
+
+        h1{
+            text-align: center;
+            color:#004c9d;
+            margin:0% 0% 0% 0%;
+        }
+        table{
+            text-align: center;
+            margin:0;
+        }
+    </style>
+
+{% endblock %}

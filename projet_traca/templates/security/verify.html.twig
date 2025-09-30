@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Information{% endblock %}
+
+{% block body %}
+
+    <div class="login_register_wrap section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-md-10">
+                    <div class="login_wrap">
+                        <div class="padding_eight_all bg-white">
+                        <div class="form-note text-center">  <h3>Information</h3> </div>
+                            <p class="validateChek"> 
+                                Votre compte a été désactivé.  <br>
+                                Pour plus d'informations, veuillez contacter un administrateur
+                            </p>                            
+                            <hr> 
+                            <div class="form-note text-center">Connexion ? <a href="{{path('app_login')}}">ici</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

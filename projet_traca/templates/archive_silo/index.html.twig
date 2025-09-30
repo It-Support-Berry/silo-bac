@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Archive silo{% endblock %}
+
+{% block body %}
+
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+    {{ include('modale/filtreDate.html.twig' , {'form':form}) }}
+
+    {% block content %}
+
+        <div class="content">
+
+            <div class="font">
+
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <h3> Filtre par mot clé </h3>
+                <i class="fa-solid fa-arrow-down-a-z"></i>
+                </a>
+
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <h3> ou par date </h3>
+                    <i class="fa-solid fa-calendar-days"></i>  
+                </a>
+                <a href="{{ path('archive_silo_download')}}"> <h3> / PDF </h3></a>
+
+            </div>
+
+            <table class="table">
+
+                <thead class="text-center">
+                    <tr  id="tableau">
+                        <th> Silo</th>
+                        <th>Cuve</th>
+                        <th>Code JDE</th>
+                        <th>Matière</th>
+                        <th>Lot</th>
+                        <th>Date de Début</th>
+                        <th>Date de Fin</th>
+                        <th>Date de Reception</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th>Modifier</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+
+                    {% for control in controls %}
+                    
+                        <tr>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.silo}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.cuve}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.codejde}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.matiere}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.lot}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.datedebut|date("d/m/Y à H:i:s")}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.datefin|date("d/m/Y à H:i:s")}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_silo_details' , {'id':control.id})}}">{{control.date|date("d/m/Y")}}</a> </td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td> <a type="button" href="{{ path('archive_silo_update' , {'id':control.id}) }}"><i class="fa-solid fa-pen"></i></a> </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+            <div class="page">
+                {{ knp_pagination_render(controls) }}
+            </div>
+                    
+        </div>
+
+    {% endblock %}
+   
+{% endblock %}

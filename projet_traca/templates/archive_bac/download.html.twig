@@ -1,0 +1,63 @@
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+         
+    
+    <h1 > L'ensemble des archives </h1>
+    
+    <table width="100%" border="1">
+        <thead>
+            <tr  id="tableau">
+                <th>Date</th>
+                <th>Bac</th>
+                <th>Localisation</th>
+                <th>Matière</th>
+                <th>Lot N°1</th>
+                <th>Quantité Lot N°1</th>
+                <th>Lot N°2</th>
+                <th>Quantité Lot N°2</th>
+                <th>Code JDE</th> 
+                <th>Cariste</th>        
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for archive in archives %}
+                <tr>
+                    <td> {{archive.date|date("d/m/Y")}}</td>
+                        <td> {{archive.numerobac}}</td>
+                        <td> {{archive.localisation}}</td>
+                        <td> {{archive.matiere}}</td>
+                        <td> {{archive.lot1}}</td>
+                        <td> {{archive.quantite1}}</td>
+                        <td> {% if archive.lot2 == NULL %} - {% else %} {{archive.lot2}} {% endif %} </td>
+                        <td> {% if archive.quantite2 == NULL %} 0 {% else %} {{archive.quantite2}} {% endif %} </td>
+                        <td> {{archive.codejde}}</td>
+                        <td> {{archive.cariste}}</td>
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+    </table>
+
+    <!-- ___________________________________________________________ CSS ________________________________ -->
+
+    <style> 
+        th, td {
+            padding: 15px;
+            text-align: center;
+            color:#004c9d;
+            font-weight: bold;
+            border-color:#004c9d;
+        }
+
+        h1{
+            text-align: center;
+            color:#004c9d;
+        }
+       
+    </style>
+
+{% endblock %}

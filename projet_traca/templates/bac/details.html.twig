@@ -1,0 +1,119 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Détails bac{% endblock %}
+    
+{% block body %}
+    <link rel="stylesheet" href="/assets/css/controle.css">
+    
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block content %}
+        <div class="content">
+            <h1> Détails du Bac N°{{bac.numerobac}}</h1>
+
+            <main>
+                
+                <div class="secondDiv">
+
+                    <form>
+                    
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Localisation</label>
+                                    <input class="inputView" type="text" value=" {{bac.Localisation}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Date</label>
+                                    <input class="inputView" type="text" value=" {{bac.date|date("d/m/Y")}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">CODE JDE</label>
+                                    <input class="inputView" type="text" value=" {{bac.codejde}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Matière</label>
+                                    <input class="inputView" type="text" value=" {{bac.matiere}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Lot N°1</label>
+                                    <input class="inputView" type="text" value=" {{bac.lot1}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Quantité N°1</label>
+                                    <input class="inputView" type="text" value=" {{bac.quantite1}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if bac.lot2 %}
+
+                            <div class="row  mb-4 mt-4">
+                                <div class="col-6">
+                                    <div class="p-2 border bg-light">
+                                        <label class="view">Lot N°2</label>
+                                        <input class="inputView" type="text" value=" {{bac.lot2}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-2 border bg-light">
+                                        <label class="view">Quantité N°2</label>
+                                        <input class="inputView" type="text" value=" {{bac.quantite2}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        {% endif %}
+
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Opérateur</label>
+                                    <input class="inputView" type="text" value=" {{bac.user.prenom}} {{bac.user.nom}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Cariste</label>
+                                    <input class="inputView" type="text" value=" {{bac.cariste}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if bac.commentaire %}
+                            <div >
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Commentaire</label>
+                                    <textarea class="inputView" disabled="disabled" id="textarea"> {{bac.commentaire}}</textarea>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="bouton"> 
+                            <a class="btn btn-secondary" href=" {{ path('app_bac') }}">Retour</a>
+                        </div>
+
+                    </form>
+                </div>
+            </main>
+        </div>
+    {% endblock %}
+{% endblock %}

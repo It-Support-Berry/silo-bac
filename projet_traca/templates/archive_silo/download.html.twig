@@ -1,0 +1,67 @@
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+         
+    
+    <h1 class="text-center">
+        L'ensemble des archives
+    </h1>
+    
+
+        <table width="100%" border="1" cellspacing="1" cellpadding="1">
+            <thead class="text-center">
+                <tr  id="tableau">
+                    <th> Silo</th>
+                    <th>Cuve</th>
+                    <th>Code JDE</th>
+                    <th>Matière</th>
+                    <th>Lot</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th>
+                    <th>Date de Réception</th>
+                    
+                </tr>
+            </thead>
+        <tbody class="text-center">
+
+            {% for control in controls %}
+                <tr>
+                    <td> {{control.silo}} </td>
+                    <td> {{control.cuve}}</a> </td>
+                    <td> {{control.codejde}}</a> </td>
+                    <td> {{control.matiere}}</a> </td>
+                    <td> {{control.lot}}</a> </td>
+                    <td> {{control.datedebut|date("d/m/Y à H:i:s")}}</a> </td>
+                    <td> {{control.datefin|date("d/m/Y à H:i:s")}}</a> </td>
+                    <td> {{control.date|date("d/m/Y")}}</a> </td>
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+    </table>
+
+
+    <!-- ___________________________________________________________ CSS ________________________________ -->
+
+    <style> 
+        th, td {
+            padding: 15px;
+            text-align: center;
+            color:#004c9d;
+            font-weight: bold;
+            border-color:#004c9d;
+        }
+
+        h1{
+            text-align: center;
+            color:#004c9d;
+        }
+        table{
+            text-align: center;
+            margin:0;
+        }
+    </style>
+
+{% endblock %}

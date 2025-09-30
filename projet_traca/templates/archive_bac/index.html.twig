@@ -1,0 +1,70 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} Archive bac{% endblock %}
+    
+{% block body %}
+
+    {% block sidebar %}
+    {{ parent() }}
+    {% endblock %}
+
+    {{ include('modale/filtreDate.html.twig' , {'form':form}) }}
+
+    {% block content %}
+
+        <div class="content">
+
+            <div class="font">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <h3> Filtre par mot clé </h3> <i class="fa-solid fa-arrow-down-a-z"></i> </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <h3> ou par date </h3><i class="fa-solid fa-calendar-days"></i>  </a>
+                <a href="{{ path('archive_bac_download')}}"> <h3> / PDF </h3></a>
+            </div>
+
+            <h1 class="ariche"> L'ensemble des Archives </h1> 
+
+            <table class="table">
+
+                <thead class="text-center">
+                    <tr  id="tableau">
+                        <th>Date</th>
+                        <th>Bac</th>
+                        <th>Localisation</th>
+                        <th>Matière</th>
+                        <th>Code JDE</th>
+                        <th>Lot N°1</th>
+                        <th>Quantité Lot N°1</th>
+                        <th>Lot N°2</th>
+                        <th>Quantité Lot N°2</th>
+                        <th>Cariste</th>     
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th>Modifier</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    {% for archive in archives %}
+                        <tr>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.date|date("d/m/Y")}} </a></td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.numerobac}} </a></td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.localisation}} </a></td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.matiere}} </a></td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.codejde}}</a> </td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.lot1}} </a></td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.quantite1}}</a></td>
+                            <td> <a type="button" href="{{ path('archive_bac_details' , {'id':archive.id}) }}">{{ archive.lot2|default('-') }} </a></td>
+                            <td> <a type="button" href="{{ path('archive_bac_details' , {'id':archive.id}) }}">{{ archive.quantite2|default('0') }} </a></td>
+                            <td> <a type="button" href="{{path('archive_bac_details' , {'id':archive.id})}}">{{archive.cariste}} </a></td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td> <a type="button" href="{{ path('archive_bac_update' , {'id':archive.id}) }}"><i class="fa-solid fa-pen"></i></a> </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %} 
+                <tbody>
+            </table>
+            
+            <div class="page"> {{ knp_pagination_render(archives) }} </div>           
+        </div>
+    {% endblock %}
+
+{% endblock %}

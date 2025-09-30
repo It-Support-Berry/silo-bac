@@ -1,0 +1,119 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Détails archive{% endblock %}
+{% block body %}
+
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+    
+    <link rel="stylesheet" href="/assets/css/controle.css">
+
+    {% block content %}
+
+        <div class="content">
+
+            <h1>Détails du Bac N° {{archive.numerobac}} </h1>
+
+            <main>
+                <div class="secondDiv">
+                    <form>
+                        <div class="row  mb-4 mt-4">
+                            
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Localisation</label>
+                                    <input class="inputView" type="text" value=" {{archive.localisation}}" disabled="disabled">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Date</label>
+                                    <input class="inputView" type="text" value=" {{archive.date|date("d/m/Y")}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">CODE JDE</label>
+                                    <input class="inputView" type="text" value=" {{archive.codejde}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Matière</label>
+                                    <input class="inputView" type="text" value=" {{archive.matiere}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Lot N°1</label>
+                                    <input class="inputView" type="text" value=" {{archive.lot1}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Quantité N°1</label>
+                                    <input class="inputView" type="text" value=" {{archive.quantite1}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if archive.lot2 %}
+                            <div class="row  mb-4 mt-4">
+                                <div class="col-6">
+                                    <div class="p-2 border bg-light">
+                                        <label class="view">Lot N°2</label>
+                                        <input class="inputView" type="text" value=" {{archive.lot2}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-2 border bg-light">
+                                        <label class="view">Quantité N°2</label>
+                                        <input class="inputView" type="text" value=" {{archive.quantite2}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="row  mb-4 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Opérateur</label>
+                                    <input class="inputView" type="text" value=" {{archive.user.prenom}} {{archive.user.nom}}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Cariste</label>
+                                    <input class="inputView" type="text" value=" {{archive.cariste}}" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if archive.commentaire %}
+                            <div >
+                                <div class="p-2 border bg-light">
+                                    <label class="view">Commentaire</label>
+                                    <textarea class="inputView" disabled="disabled"> {{archive.commentaire}}</textarea>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                            
+                        <div class="bouton"> 
+                            <a class="btn btn-secondary" href="{{ path('app_archive_bac')}}">Retour</a>
+                            <a class="btn btn-secondary" href="{{path('archive_bac_details_download',{'id':archive.id})}}" > PDF</a>
+                        </div>
+
+                    </form>
+                </div>
+            </main>
+        </div>
+    {% endblock %}
+{% endblock %}

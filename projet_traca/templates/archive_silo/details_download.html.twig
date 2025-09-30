@@ -1,0 +1,79 @@
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center"> Détails de l'archive</h1>
+       
+    <table width="100%" align="center">
+
+        <tr>
+            <td>Silo : {{control.silo}}</td>
+            <td>Cuve : {{control.cuve}}</td>
+        </tr>
+
+        <tr>
+            <td>N° Lot : {{control.lot}}</td>
+            <td>Atelier : {{control.atelier}}</td>
+        </tr>
+
+            <tr>
+            <td>Code JDE: {{control.codejde}}</td>
+            <td>Matière : {{control.matiere}}</td>
+        </tr>
+
+        <tr>
+            <td>Réceptionniste : {{control.user.prenom}} {{control.user.nom}}</td>
+            <td>Date de réception : {{control.date|date("d/m/Y")}}</td>
+        </tr>
+
+        
+        <tr>
+            <td>Débuté par : {{control.userdebut.prenom}} {{control.userdebut.nom}}</td>
+            <td>Date et Heure de début {{control.datedebut|date("d/m/Y à H:i:s")}}</td>
+        </tr>
+
+        <tr>
+            <td>Clôturé par : {{control.userfin.prenom}} {{control.userfin.nom}}</td>
+            <td>Date et Heure de fin {{control.datefin|date("d/m/Y à H:i:s")}}</td>
+        </tr>
+    
+
+        {% if control.modification %}
+            <tr>
+                <td colspan='2'>
+                    {{control.modification}}
+                </td>
+            </tr>
+        {% endif %}
+
+        {% if control.commentaire %}
+            <tr>
+                <td colspan='2'>
+                    {{control.commentaire}}
+                </td>
+            </tr>
+        {% endif %}
+    
+    </table>
+    <!-- ___________________________________________________________ CSS ________________________________ -->
+
+    <style> 
+   
+       td{
+	        border: 1px solid black;
+            padding: 15px;
+            color:#004c9d;
+            font-weight: bold;
+            border-color:#004c9d;
+            width: 50;
+        }
+
+        h1{
+            text-align: center;
+            color:#004c9d;
+        } 
+       
+    </style>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    
+    <body>
+        {% block sidebar %}
+
+            <input type="checkbox"  id="check" >
+
+            <header>
+                <label for="check" id="label">
+                    <i class="fas fa-bars" id="sidebar_btn"> </i>
+                </label>
+            </header>
+
+            <div class="sidebar">
+                <center>
+                    <img src="{{asset('assets/img/user.jpg')}}" class="user" alt="user">
+                </center>
+                <h4>{{app.user.prenom}} {{app.user.nom}}</h4>
+                
+                {% if is_granted('ROLE_ADMIN') %}
+
+                    <div class="margin">
+                        <a href="{{path('admin')}}" target="_blank"><i class="fa fa-user-cog me-3"></i> <span>Administration</span></a>
+                    </div>
+
+                    <div class="margin">
+                        <a href="{{path('user_update')}}"><i class="fa-solid fa-user-pen me-3"></i> <span> Utilisateur</span></a>
+                    </div>
+                {% endif %}
+
+                <div class="dropdown" >
+                    <a class="dropbtn"><i class="fa-solid fa-glass-water me-3"></i> <span>Bacs</span> </a>
+                    <div class="dropdown-content" style="left:0;">
+                        <a href="{{path('app_archive_bac')}}">Archive</a>
+                        <a href="{{path('app_bac')}}">En cours</a>
+                        {% if is_granted('ROLE_RECEPTIONNISTE') or is_granted('ROLE_ADMIN') %}
+                            <a href="{{path('create_bac')}}">Nouveau</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="dropdownSilo">
+                    <a class="dropbtn"> <i class="fa-solid fa-database me-3"></i> <span>Silos</span> </a>
+                    <div class="dropdownSilo-content" style="left:0;">
+                        <a href="{{path('app_archive')}}">Archive</a>
+                        <a href="{{path('app_silos')}}">En cours</a>
+                        {% if is_granted('ROLE_RECEPTIONNISTE') or is_granted('ROLE_ADMIN') %}
+                            <a href="{{path('silo_create')}}">Nouveau</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+    </body>
+{% endblock %}

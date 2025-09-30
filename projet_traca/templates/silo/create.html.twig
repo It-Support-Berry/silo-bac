@@ -1,0 +1,99 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Création{% endblock %}
+    
+{% block body %}
+    <link rel="stylesheet" href="/assets/css/controle.css">
+
+	{% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+	{% block content %}
+
+		<div class="content">
+			<h1> Enregistrement d'un lot </h1>
+
+			<main>
+				<div class="secondDiv">
+
+					{{form_start(form)}}
+						<section>
+							<div>
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.silo) }}
+										{{ form_widget(form.silo) }}
+									</div>
+								</aside>
+
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.cuve) }}
+										{{ form_widget(form.cuve) }}
+									</div>
+								</aside>
+
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.atelier, 'Responsable') }}
+										{{ form_widget(form.atelier) }}
+									</div>
+								</aside>
+
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.matiere, 'Matière') }}
+										{{ form_widget(form.matiere) }}
+									</div>
+								</aside>
+
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.codejde, 'Code JDE') }}
+										{{ form_widget(form.codejde) }}
+									</div>
+								</aside>
+
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.date) }}
+										{{ form_widget(form.date) }}
+									</div>
+								</aside>
+
+								<aside>
+									<div class="input-group">
+										{{ form_label(form.lot, 'N° Lot') }}
+										{{ form_widget(form.lot, { 'attr': { 'minlength' : 4, 'maxlength' : 4 } }) }}
+									</div>
+								</aside> 
+
+								<div class="bouton">
+									<a class="btn btn-secondary" href=" {{ path('app_silos') }}">Retour</a>
+									<button type="submit" class="btn btn-secondary" name="register" onclick="return confirm('Confirmez-vous la validation')">Valider</button>
+								</div>
+
+							</div>
+						</section>
+				
+					{{form_end(form)}}
+				</div>
+			</main>
+    
+    	</div>
+
+	{% endblock %}
+
+   
+
+	
+	{% block javascripts %}
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{{asset('assets/js/silo.js')}}"></script>
+    
+    {% endblock %}
+
+   
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Accueil Bac{% endblock %}
+
+{% block body %}
+   
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block content %}
+        {{ parent() }}
+
+        <div class="content">
+        
+            <div class="sac"> <h1> Bacs en cours d'utilisation <a href="{{ path('bac_download')}}">  / PDF </a> </h1> </div>
+
+                <table class="table">
+                    <thead class="text-center">
+                        <tr  id="tableau">
+                            <th>Bac</th>
+                            <th>Localisation</th>
+                            <th>Lot</th>
+                            <th>Matière</th>
+                            <th>Code JDE</th>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECEPTIONNISTE') %}
+                                <th>Modifier </th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-center">
+                        {% for bac in bacs %}
+                            <tr>
+                                {% set lot = bac.quantite2 < bac.quantite1 ? bac.lot1 : bac.lot2 %}
+                                <td> <a type="button" href="{{path('bac_details' , {'id':bac.id})}}">{{bac.numerobac}}</a> </td>
+                                <td> <a type="button" href="{{path('bac_details' , {'id':bac.id})}}">{{bac.localisation}}</a> </td>
+                                <td> <a type="button" href="{{path('bac_details' , {'id':bac.id})}}">{{lot}}</a> </td>
+                                <td> <a type="button" href="{{path('bac_details' , {'id':bac.id})}}">{{bac.matiere}}</a> </td>
+                                <td> <a type="button" href="{{path('bac_details' , {'id':bac.id})}}">{{bac.codejde}}</a> </td>                                    
+                                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECEPTIONNISTE') %}
+                                    <td> <a type="button" href="{{path('bac_update' , {'id':bac.id})}}"><i class="fa-solid fa-pen"></i></a> </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %} 
+                    <tbody>
+                </table>
+
+            <div class="page">
+                {{ knp_pagination_render(bacs) }}
+            </div>
+        </div>
+
+    {% endblock %} 
+{% endblock %}

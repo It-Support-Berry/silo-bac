@@ -1,0 +1,63 @@
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+         
+    
+    <h1 > Silos en cours d'utilisation </h1>
+    
+        <table width="100%" border="1" cellspacing="1" cellpadding="1">
+            <thead>
+                <tr  id="tableau">
+                   <th>Silo</th>
+                    <th>Cuve</th>
+                    <th>Code JDE</th>
+                    <th>Matière</th>
+                    <th>Lot</th>
+                    <th>Responsable</th>
+                    <th>Début</th> 
+                   
+                </tr>
+            </thead>
+        <tbody>
+
+            {% for control in controls %}
+                <tr>
+
+                    <td> {{control.silo}} </td>
+                    <td> {{control.cuve}} </td>
+                    <td> {{control.codejde}} </td>
+                    <td> {{control.matiere}} </td>
+                    <td> {{control.lot}} </td>
+                    <td> {{control.atelier}} </td>
+                    <td> {% if control.etatdebut %}Oui{% else %}Non{% endif%} </td>
+                    
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+    </table>
+
+    <!-- ___________________________________________________________ CSS ________________________________ -->
+
+    <style> 
+        th, td {
+            padding: 1.5px;
+            text-align: center;
+            color:#004c9d;
+            font-weight: bold;
+            border-color:white;
+        }
+
+        h1{
+            text-align: center;
+            color:#004c9d;
+        }
+        table{
+            text-align: center;
+            margin:0;
+        }
+    </style>
+
+{% endblock %}

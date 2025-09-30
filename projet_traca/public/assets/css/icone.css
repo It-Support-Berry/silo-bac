@@ -1,0 +1,15 @@
+.font{
+    padding-bottom: 20px;
+    text-align: center;
+    color: #004c9d;
+    margin-top: 100px;
+}
+
+.font i{
+    font-size: 1.8em ;
+    color: #004c9d;
+}
+
+h3{
+    display: inline;
+}

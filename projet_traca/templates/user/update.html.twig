@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Modification{% endblock %}
+    
+{% block body %}
+    <link rel="stylesheet" href="/assets/css/controle.css">
+
+	{% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+	{% block content %}
+
+		<div class="content modaleRole">
+			<h1> Mettre à jour les informations d'un utilisateur</h1>
+
+			<main>
+				<div class="secondDiv">
+
+					<div class="text-center">
+						{% for message in app.flashes('success') %}
+							<div class="alert alert-success"> {{ message }}</div>
+						{% endfor %}
+
+						{% for message in app.flashes('error') %}
+							<div class="alert alert-danger"> {{ message }}</div>
+						{% endfor %}
+					</div>
+
+					{{form_start(form)}}
+						<aside>
+							<div class="input-group">
+								{{ form_label(form.user) }}
+								{{ form_widget(form.user) }}
+							</div>
+						</aside>
+
+						<aside>
+							<div class="input-group">
+								{{ form_label(form.roles) }}
+								{{ form_widget(form.roles) }}
+							</div>
+						</aside>
+					
+						<aside>
+							<div class="form-check form-switch" id="statut">
+								{{ form_widget(form.active) }}
+							</div>
+						</aside>
+
+						<div class="bouton">
+							<a class="btn btn-secondary" href=" {{ path('app_bac') }}">Retour</a>
+							<button type="submit" class="btn btn-secondary" name="register" onclick="return confirm('Confirmez-vous la validation')">Valider</button>
+						</div>
+					{{form_end(form)}}
+				</div>
+			</main>
+    
+    	</div>
+
+	{% endblock %}
+   
+{% endblock %}

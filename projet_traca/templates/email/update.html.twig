@@ -1,0 +1,15 @@
+<p> Bonjour, </p>
+
+<p> Nous avons une mise à jour : </p>
+
+{% set lot = bac.quantite2 < bac.quantite1 ? bac.lot1 : bac.lot2 %}
+{% set quantite = bac.quantite2 < bac.quantite1 ? bac.quantite1 : bac.quantite2 %}
+
+<p> N° Bac : {{bac.numerobac}} </p>
+<p> N° de lot : {{lot}} </p>
+<p> Quantité : {{quantite}} </p>
+<p> Matière : {{bac.matiere}} </p>
+<p> CODE JDE : {{bac.codejde}} </p>
+<p> Localisation : {{bac.localisation}} </p>
+
+<p> Cordialement, </p>

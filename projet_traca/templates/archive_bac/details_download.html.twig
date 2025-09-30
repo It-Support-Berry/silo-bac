@@ -1,0 +1,70 @@
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+         
+
+    <h1 class="text-center">
+        Détails du Bac N° : {{archive.numerobac}}
+    </h1>
+
+
+    <table align="center" width="100%" border="1">
+
+        <tr>
+            <td>Localisation : {{archive.localisation}}</td>
+            <td>Date : {{archive.date|date("d/m/Y")}}</td>
+        </tr>
+
+        <tr>
+            <td>Code JDE : {{archive.codejde}}</td>
+            <td>Matière : {{archive.matiere}}</td>
+        </tr>
+
+        <tr>
+            <td>Lot N°1 : {{archive.lot1}}</td>
+            <td>Nombre de sac lot N°1 : {{archive.quantite1}}</td>
+        </tr>
+
+        {% if archive.lot2 %}
+            <tr>
+                <td>Lot N°2 : {{archive.lot1}}</td>
+                <td>Nombre de sac lot N°2 : {{archive.quantite2}}</td>
+            </tr>
+        {% endif %}
+        
+        <tr>
+            <td>Opérateur : {{archive.user.prenom}} {{archive.user.nom}}</td>
+            <td>Cariste : {{archive.cariste}}</td>
+        </tr>
+
+        {% if archive.commentaire %}
+            <tr>
+                <td colspan='2'>
+                    {{archive.commentaire}}
+                </td>
+            </tr>
+        {% endif %}
+
+    </table>
+    <!-- ___________________________________________________________ CSS ________________________________ -->
+
+    <style> 
+   
+       td{
+	        border: 1px solid black;
+            padding: 15px;
+            color:#004c9d;
+            font-weight: bold;
+            border-color:#004c9d;
+            width: 50%;
+        }
+
+        h1{
+            text-align: center;
+            color:#004c9d;
+        } 
+       
+    </style>
+
+{% endblock %}

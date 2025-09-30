@@ -1,0 +1,114 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Modification{% endblock %}
+    
+{% block body %}
+    <link rel="stylesheet" href="/assets/css/controle.css">
+
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block content %}
+
+    <div class="content">
+
+        <h1> Modifier un remplissage </h1>
+
+        <main>
+            <div class="secondDiv">
+
+                <div class="text-center">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-danger"> {{ message }}</div>
+                    {% endfor %}
+                </div>
+
+                {{form_start(form)}}
+
+                    <aside class="bac">
+                        <div class="row">
+                            <div class="col">
+                                {{ form_label(form.numerobac, 'Bac') }}
+                                {{ form_widget(form.numerobac) }}
+                            </div>
+                            <div class="col">
+                                {{ form_label(form.localisation) }}
+                                {{ form_widget(form.localisation) }}
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside  class="bac">
+                        <div class="row">
+                            <div class="col">
+                                {{ form_label(form.matiere, 'Matière ') }}
+                                {{ form_widget(form.matiere) }}
+                            </div>
+                            <div class="col">
+                                {{ form_label(form.codejde, ' Code JDE') }}
+                                {{ form_widget(form.codejde) }}
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside  class="bac">
+                        <div class="row">
+                            <div class="col">
+                                {{ form_label(form.lot1, 'Lot N°1') }}
+                                {{ form_widget(form.lot1) }}
+                            </div>
+                            <div class="col">
+                                {{ form_label(form.quantite1, 'Nombre de sac lot N°1') }}
+                                {{ form_widget(form.quantite1) }}
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside class="bac">
+                        <div class="row">
+                            <div class="col">
+                                {{ form_label(form.lot2, 'Lot N°2') }}
+                                {{ form_widget(form.lot2) }}
+                            </div>
+                            <div class="col">
+                                {{ form_label(form.quantite2, 'Nombre de sac lot N°2') }}
+                                {{ form_widget(form.quantite2) }}
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside class="bac">
+                        <div class="row">
+                            <div class="col">
+                                {{ form_label(form.date) }}
+                                {{ form_widget(form.date ) }}
+                            </div>
+                            <div class="col">
+                                {{ form_label(form.cariste) }}
+                                    {{ form_widget(form.cariste ) }}
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside class="bac">
+                        <div class="input-group">
+                            {{ form_label(form.commentaire) }}
+                            {{ form_widget(form.commentaire ) }}
+                        </div>
+                    </aside>
+
+                    <div class="bouton">
+                        <a class="btn btn-secondary" href=" {{ path('app_bac') }}">Retour</a>
+                        <button type="submit" class="btn btn-secondary" name="register" onclick="return confirm('Confirmez-vous la modification')">Valider</button>
+                    </div>
+            
+                {{form_end(form)}}
+            </div>
+        </main>
+    
+    </div>
+
+    {% endblock %}
+   
+{% endblock %}

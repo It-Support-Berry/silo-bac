@@ -1,0 +1,33 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">Recherche</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<table class="table" >
+				    <tbody class="text-center" >
+						
+						{{ form_start(form, {'id': 'form'}) }}
+						
+							{{ form_label(form.search, 'Saisie ') }}
+							{{ form_widget(form.search) }}
+
+							{{ form_label(form.dateStart, 'Du ') }}
+							{{ form_widget(form.dateStart) }}
+
+							{{ form_label(form.dateEnd, 'Au') }}
+							{{ form_widget(form.dateEnd) }}
+
+							<main class="bouton">
+								<button type="submit" class="btn btn-primary">Rechercher</button>
+							</main>
+						{{form_end(form)}}
+					</tbody>							
+				</table>
+			</div>
+			<div class="modal-footer"> </div>
+		</div>
+	</div>
+</div>

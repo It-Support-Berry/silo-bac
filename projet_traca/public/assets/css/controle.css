@@ -1,0 +1,133 @@
+.sidebar{
+    margin-top: 55px;
+}
+
+.modaleRole h1{
+    margin: 150px 0 60px 0;
+}
+.modaleRole aside{
+    margin-top: 40px;
+}
+
+label #sidebar_btn{
+    margin: 40px 0;
+}
+
+main {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    padding: 5%;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    background-color: #0066b5;
+    border-radius: 10px;
+}
+
+.secondDiv{
+    width: 60%;
+}
+
+.view{
+    color: #0066b5;
+}
+
+.bac{
+    padding-bottom: 20px;
+}
+
+#nettoyage{
+    margin-top: 50px;
+}
+
+.labelarchive{
+    margin-right: 10%;
+    align-items: center;
+    width: 30%;
+}
+
+.form-check{
+    margin-right: 5%;
+    align-items: center;
+}
+
+.inputView{
+    background-color:#0066b5;
+    color: aliceblue;
+    width: 100%;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+}
+#textarea{
+    min-height:  150px; 
+}
+
+label {
+    min-width: 24%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    color: white;
+}
+
+#statut{
+    margin-left: 18px;
+    margin-top: 10px;
+}
+
+#statut label{
+    margin-left: 47px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    vertical-align: middle;
+}
+
+#modif{
+    color: white;
+    text-align: center;
+    display: block;
+}
+
+.customInput{
+    width: 100%;
+    border: none;
+}
+
+@media (max-width:700px) {
+
+    main{
+        margin: 5px;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap:15px;
+    }
+    
+    form>div,.secondDiv{
+        width:100%;
+    }
+}
+
+@media (max-width:1011px) {
+    form>div,.secondDiv{
+        width:100%;
+    }
+    form>div:nth-child(2){
+    width: 100%;
+}
+}
+
+
+

@@ -1,0 +1,148 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Détails archive{% endblock %}
+    
+{% block body %}
+    <link rel="stylesheet" href="/assets/css/controle.css">
+
+	{% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+	{% block content %}
+
+		<div class="content">
+			<h1> Détails du silo </h1>
+
+			<main>
+				
+				<div class="secondDiv">
+
+					<div class="text-center">
+						{% for message in app.flashes('success') %}
+							<div class="alert alert-danger"> {{ message }}</div>
+						{% endfor %}
+					</div>
+
+					<form>
+				
+						<div class="row  mb-4 mt-4">
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Silo</label>
+									<input class="inputView" type="text" value=" {{control.silo}}" disabled="disabled">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">N°Lot</label>
+									<input class="inputView" type="text" value=" Atelier {{control.lot}}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+							
+						<div class="row  mb-4 mt-4">
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Cuve</label>
+									<input class="inputView" type="text" value=" {{control.cuve}}" disabled="disabled">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Responsable</label>
+									<input class="inputView" type="text" value=" Atelier {{control.atelier}}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+						<div class="row  mb-4">
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Code JDE</label>
+									<input class="inputView" type="text" value="{{control.codejde}}" disabled="disabled">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Matière</label>
+									<input class="inputView" type="text" value=" {{control.matiere}}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+						<div class="row  mb-4">
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Réceptionniste </label>
+									<input class="inputView" type="text" value="{% if control.user.prenom is defined and not null %} {{control.user.prenom}} {{control.user.nom}}
+										{% else %} pas debuté {% endif%} " disabled="disabled">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Date de réception</label>
+									<input class="inputView" type="text" value="{{control.date|date("d/m/Y")}}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+						<div class="row  mb-4">
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Débuté par </label>
+									<input class="inputView" type="text" value="{% if control.userdebut.prenom is defined and not null %} {{control.userdebut.prenom}} {{control.userdebut.nom}}
+										{% else %} pas debuté {% endif%} " disabled="disabled">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Date / Heure de début</label>
+									<input class="inputView" type="text" value="{{control.datedebut|date("d/m/Y à H:i:s")}}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+						<div class="row  mb-4">
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Clôturé par </label>
+									<input class="inputView" type="text" value="{% if control.userfin.prenom is defined and not null %} {{control.userfin.prenom}} {{control.userfin.nom}}
+										{% else %} pas debuté {% endif%} " disabled="disabled">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="p-2 border bg-light">
+									<label class="view">Date / Heure de clôture</label>
+									<input class="inputView" type="text" value="{{control.datefin|date("d/m/Y à H:i:s")}}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+						{% if control.modification %}
+							<div class=" mb-4">
+								<div class="p-2 border bg-light">
+									<label class="view">Modification</label>
+									<textarea class="inputView" disabled="disabled" id="textarea"> {{control.modification}}</textarea>
+								</div>
+							</div>
+						{% endif %}
+
+						{% if control.commentaire %}
+							<div class=" mb-4">
+								<div class="p-2 border bg-light">
+									<label class="view">Commentaire</label>
+									<textarea class="inputView" disabled="disabled" id="textarea"> {{control.commentaire}}</textarea>
+								</div>
+							</div>
+						{% endif %}
+
+						<div class="bouton"> 
+							<a class="btn btn-secondary" href=" {{ path('app_archive') }}">Retour</a>
+							<a class="btn btn-secondary" href=" {{path('archive_silo_details_download' , {'id':control.id})}}" > PDF</a> 
+						</div>			
+					</form>
+				</div>
+			</main>
+		</div>
+    {% endblock %}
+{% endblock %}

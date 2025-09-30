@@ -1,0 +1,73 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Accueil Silos{% endblock %}
+
+{% block body %}
+
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+
+
+    {% block content %}
+
+        <div class="content">
+
+        <div class="sac">
+            <h1> Silos en cours d'utilisation <a href="{{ path('silo_download')}}">  / PDF </a></h1> 
+        </div>
+
+        <table class="table">
+            <thead class="text-center">
+                <tr  id="tableau">
+                    <th>Silo</th>
+                    <th>Cuve</th>
+                    <th>Code JDE</th>
+                    <th>Matière</th>
+                    <th>Lot</th>
+                    <th>Responsable</th>
+                    {% if is_granted('ROLE_RECEPTIONNISTE')  or is_granted('ROLE_ADMIN') %}
+                        <th>Mis à jour</th>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_CHEF') or is_granted('ROLE_ADMIN') %}
+                        <th>Validation</th>
+                    {% endif %}
+                </tr>
+            </thead>
+           <tbody class="text-center">
+                {% for control in controls %}
+
+                    {% set rowClass = control.etatdebut ? 'debut' %}
+                    {% set etatdebut = control.etatdebut ? 'Oui' : 'Non' %}
+
+                    <tr class="{{ rowClass }}">
+                        <td> <a type="button" href="{{path('silo_details' , {'id':control.id})}}">{{control.silo}}</a> </td>
+                        <td> <a type="button" href="{{path('silo_details' , {'id':control.id})}}">{{control.cuve}}</a> </td>
+                        <td> <a type="button" href="{{path('silo_details' , {'id':control.id})}}">{{control.codejde}}</a> </td>
+                        <td> <a type="button" href="{{path('silo_details' , {'id':control.id})}}">{{control.matiere}}</a> </td>
+                        <td> <a type="button" href="{{path('silo_details' , {'id':control.id})}}">{{control.lot}}</a> </td>
+                        <td> <a type="button" href="{{path('silo_details' , {'id':control.id})}}">{{control.atelier}}</a> </td>
+
+                        {% if is_granted('ROLE_RECEPTIONNISTE') or is_granted('ROLE_ADMIN') %}
+                           <td> <a type="button" href="{{ path('silo_update' , {'id':control.id}) }}"><i class="fa-solid fa-pen"></i></a> </td>
+                        {% endif %}
+
+                        {% if is_granted('ROLE_CHEF') or is_granted('ROLE_ADMIN') %}
+                           <td> <a type="button" href="{{ path('silo_validation' , {'id':control.id}) }}"><i class="fa-solid fa-circle-check"></i></a> </td>
+                        {% endif %}
+
+                    </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="page"> {{ knp_pagination_render(controls) }} </div>
+
+        </div>
+
+    {% endblock %}
+
+
+{% endblock %}
